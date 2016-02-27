@@ -1,13 +1,22 @@
+<!DOCTYPE html>
 <html lang="en" >
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+  <meta name="description" content="Angular Material test app">
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic">
+  <link rel="stylesheet" href="./assets/app.css">
 </head>
-<body ng-app="BlankApp" ng-cloak>
+<body ng-app="ContactManagerApp" ng-cloak ng-controller="mainController as vm">
   <!--
     Your HTML content here
   -->
+  <h1>Hello World</h1>
+
+  {{vm.message}}
 
   <!-- Angular Material requires Angular.js Libraries -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -17,6 +26,8 @@
 
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+  <script src="./dist/controllers/mainController.js"></script>
+  <script src="./dist/boot.js"></script>
 
   <!-- Your application bootstrap  -->
   <script type="text/javascript">
