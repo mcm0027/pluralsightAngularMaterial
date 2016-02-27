@@ -12,13 +12,11 @@
 </head>
 <body ng-app="ContactManagerApp" ng-cloak ng-controller="mainController as vm" layout="row">
 
-  <div flex="30" style="background-color: #009688">
-    Sidenav
-  </div>
+  <div ng-include="'dist/views/sidenav.html'" layout="vertical"></div>
 
   <div layout="column" flex>
-    <div style="background-color: #3949ab">Toolbar</div>
-    <md-content flex>
+    <div ng-include="'dist/views/toolbar-header.html'"></div>
+    <md-content flex id="content">
       Main Content
     </md-content>
   </div>
@@ -33,6 +31,7 @@
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
   <script src="./dist/controllers/mainController.js"></script>
+    <script src="./dist/services/userService.js"></script>
   <script src="./dist/boot.js"></script>
 
   <!-- Your application bootstrap  -->

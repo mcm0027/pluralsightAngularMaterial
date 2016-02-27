@@ -1,11 +1,25 @@
-/// <reference path="_all.ts" />
+/// <reference path="../_all.ts" />
 var ContactManagerApp;
 (function (ContactManagerApp) {
     var MainController = (function () {
-        function MainController() {
-            this.message = "Hello from our controller";
+        function MainController(userService, $mdSidenav) {
+            this.userService = userService;
+            this.$mdSidenav = $mdSidenav;
+            this.users = [];
+            var self = this;
+            this.userService
+                .loadAllUsers()
+                .then(function (users) {
+                self.users = users;
+                console.log(self.users);
+            });
         }
-        MainController.$inject = [];
+        MainController.prototype.toggleSideNav = function () {
+            this.$mdSidenav('left').toggle();
+        };
+        MainController.$inject = [
+            'userService',
+            '$mdSidenav'];
         return MainController;
     })();
     ContactManagerApp.MainController = MainController;

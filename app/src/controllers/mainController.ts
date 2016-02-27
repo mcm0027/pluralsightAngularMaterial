@@ -1,12 +1,30 @@
-/// <reference path="_all.ts" />
+/// <reference path="../_all.ts" />
 
 module ContactManagerApp {
   export class MainController {
-    static $inject = [];
+    static $inject = [
+      'userService',
+      '$mdSidenav'];
 
-    
+    constructor(
+      private userService: IUserService,
+      private $mdSidenav: angular.material.ISidenavService) {
+      var self = this;
 
-    message: string = "Hello from our controller";
+      this.userService
+        .loadAllUsers()
+        .then((users: User[]) => {
+          self.users = users;
+          console.log(self.users);
+        });
+    }
+
+    users: User[] = [];
+
+    toggleSideNav() : void {
+      this.$mdSidenav('left').toggle();
+    }
+
 
   }
 }
