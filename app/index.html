@@ -10,13 +10,19 @@
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic">
   <link rel="stylesheet" href="./assets/app.css">
 </head>
-<body ng-app="ContactManagerApp" ng-cloak ng-controller="mainController as vm">
-  <!--
-    Your HTML content here
-  -->
-  <h1>Hello World</h1>
+<body ng-app="ContactManagerApp" ng-cloak ng-controller="mainController as vm" layout="row">
 
-  {{vm.message}}
+  <div flex="30" style="background-color: #009688">
+    Sidenav
+  </div>
+
+  <div layout="column" flex>
+    <div style="background-color: #3949ab">Toolbar</div>
+    <md-content flex>
+      Main Content
+    </md-content>
+  </div>
+
 
   <!-- Angular Material requires Angular.js Libraries -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
