@@ -4,4 +4,29 @@
   <md-toolbar>
     <h1>Contacts</h1>
   </md-toolbar>
+  <div layout-padding>
+    <md-autocomplete
+      md-search-text="vm.searchText"
+      md-items="item in vm.users | filter:vm.searchText"
+      md-item-text="item.name"
+      md-min-length="3"
+      placeholder="filter">
+      <md-item-template>
+        <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{item.name}}</span>
+      </md-item-template>
+      <md-not-found>
+        No user found matching "{{vm.searchText}}"
+      </md-not-found>
+    </md-autocomplete>
+  </div>
+  <md-content>
+    <md-list>
+      <md-list-item data-ng-repeat="user in vm.users | filter:vm.searchText | orderBy: 'name'">
+        <md-button ng-click="vm.select(user)" ng-class="{'selected': user === vm.selected }">
+          <md-icon md-svg-icon="{{user.avatar}}" class="avatar"></md-icon>
+          {{user.name}}
+        </md-button>
+      </md-list-item>
+    </md-list>
+  </md-content>
 </md-sidenav>

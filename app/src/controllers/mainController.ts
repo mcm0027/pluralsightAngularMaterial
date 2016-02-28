@@ -14,17 +14,27 @@ module ContactManagerApp {
       this.userService
         .loadAllUsers()
         .then((users: User[]) => {
+          self.selected = users[0];
           self.users = users;
           console.log(self.users);
         });
     }
 
+    searchText: string = "";
     users: User[] = [];
-
+    selected: User = null;
     toggleSideNav() : void {
       this.$mdSidenav('left').toggle();
     }
 
+    select (user: User) : void {
+      this.selected = user;
+
+      var sidenav = this.$mdSidenav('left');
+      if (sidenav.isOpen()) {
+        sidenav.close();
+      }
+    }
 
   }
 }
