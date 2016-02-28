@@ -25,12 +25,10 @@ module ContactManagerApp {
         avatar: 'svg-1',
         bio: "fish fish blah doob",
         notes: [
-          { title: "Pay back dinner", date: new Date("2016-01-12")},
-          { title: "Buy flowers for birthday", date: new Date("2016-01-19")}
         ]
       },
          {
-        name: 'Erick Riley',
+        name: 'Bob Riley',
         avatar: 'svg-2',
         bio: "quick squip doob kappa",
         notes: [
@@ -39,7 +37,7 @@ module ContactManagerApp {
         ]
       },
          {
-        name: 'Erick Riley',
+        name: 'EmilyPoopbutt',
         avatar: 'svg-3',
         bio: "blah blah blah doob",
         notes: [
