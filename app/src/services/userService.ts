@@ -37,7 +37,7 @@ module ContactManagerApp {
         ]
       },
          {
-        name: 'EmilyPoopbutt',
+        name: 'Emily Poopbutt',
         avatar: 'svg-3',
         bio: "blah blah blah doob",
         notes: [
