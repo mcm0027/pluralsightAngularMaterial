@@ -19,7 +19,7 @@
       </md-not-found>
     </md-autocomplete>
   </div>
-  <md-content>
+  <md-content class="scrollable-nav-content">
     <md-list>
       <md-list-item data-ng-repeat="user in vm.users | filter:vm.searchText | orderBy: 'name'">
         <md-button ng-click="vm.select(user)" ng-class="{'selected': user === vm.selected }">
@@ -29,4 +29,7 @@
       </md-list-item>
     </md-list>
   </md-content>
+  <md-button class="md-fab md-fab-bottom-right" ng-click="vm.addUser($event)">
+    <ng-md-icon icon="add"></ng-md-icon>
+  </md-button>
 </md-sidenav>

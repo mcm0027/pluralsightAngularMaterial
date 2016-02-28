@@ -52,3 +52,12 @@ md-list .md-button {
   -ms-transform: scale(0.70);
   -o-transform: scale(0.70);
 }
+
+.scrollable-nav-content {
+  position: absolute;
+  top: 136px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: auto;
+}
