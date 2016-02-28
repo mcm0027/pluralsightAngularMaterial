@@ -7,14 +7,16 @@ module ContactManagerApp {
       '$mdSidenav',
       '$mdToast',
       '$mdDialog',
-      '$mdMedia'];
+      '$mdMedia',
+      '$mdBottomSheet'];
 
     constructor(
       private userService: IUserService,
       private $mdSidenav: angular.material.ISidenavService,
       private $mdToast: angular.material.IToastService,
       private $mdDialog: angular.material.IDialogService,
-      private $mdMedia: angular.material.IMedia) {
+      private $mdMedia: angular.material.IMedia,
+      private $mdBottomSheet: angular.material.IBottomSheetService) {
       var self = this;
 
       this.userService
@@ -22,7 +24,7 @@ module ContactManagerApp {
         .then((users: User[]) => {
           self.selected = users[0];
           self.users = users;
-          console.log(self.users);
+          self.userService.selectedUser = self.selected;          console.log(self.users);
         });
     }
 
@@ -34,7 +36,7 @@ module ContactManagerApp {
       this.$mdSidenav('left').toggle();
     }
 
-    select (user: User) : void {
+    selectUser (user: User) : void {
       this.selected = user;
 
       var sidenav = this.$mdSidenav('left');
@@ -43,6 +45,20 @@ module ContactManagerApp {
       }
 
       this.tabIndex = 0;
+    }
+
+    showContactOptions($event) {
+      this.$mdBottomSheet.show({
+        parent: angular.element(document.getElementById('wrapper')),
+        templateUrl: './dist/views/contactSheet.html',
+        controller: ContactPanelController,
+        controllerAs: "cp",
+        bindToController: true,
+        targetEvent: $event
+
+      }).then((clickedItem) => {
+        clickedItem && console.log( clickedItem.name + ' clicked!');
+      })
     }
 
     addUser($event) {

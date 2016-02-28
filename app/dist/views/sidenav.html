@@ -22,7 +22,7 @@
   <md-content class="scrollable-nav-content">
     <md-list>
       <md-list-item data-ng-repeat="user in vm.users | filter:vm.searchText | orderBy: 'name'">
-        <md-button ng-click="vm.select(user)" ng-class="{'selected': user === vm.selected }">
+        <md-button ng-click="vm.selectUser(user)" ng-class="{'selected': user === vm.selected }">
           <md-icon md-svg-icon="{{user.avatar}}" class="avatar"></md-icon>
           {{user.name}}
         </md-button>

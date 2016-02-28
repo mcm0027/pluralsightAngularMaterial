@@ -2,12 +2,13 @@
 var ContactManagerApp;
 (function (ContactManagerApp) {
     var MainController = (function () {
-        function MainController(userService, $mdSidenav, $mdToast, $mdDialog, $mdMedia) {
+        function MainController(userService, $mdSidenav, $mdToast, $mdDialog, $mdMedia, $mdBottomSheet) {
             this.userService = userService;
             this.$mdSidenav = $mdSidenav;
             this.$mdToast = $mdToast;
             this.$mdDialog = $mdDialog;
             this.$mdMedia = $mdMedia;
+            this.$mdBottomSheet = $mdBottomSheet;
             this.tabIndex = 0;
             this.searchText = "";
             this.users = [];
@@ -18,19 +19,32 @@ var ContactManagerApp;
                 .then(function (users) {
                 self.selected = users[0];
                 self.users = users;
+                self.userService.selectedUser = self.selected;
                 console.log(self.users);
             });
         }
         MainController.prototype.toggleSideNav = function () {
             this.$mdSidenav('left').toggle();
         };
-        MainController.prototype.select = function (user) {
+        MainController.prototype.selectUser = function (user) {
             this.selected = user;
             var sidenav = this.$mdSidenav('left');
             if (sidenav.isOpen()) {
                 sidenav.close();
             }
             this.tabIndex = 0;
+        };
+        MainController.prototype.showContactOptions = function ($event) {
+            this.$mdBottomSheet.show({
+                parent: angular.element(document.getElementById('wrapper')),
+                templateUrl: './dist/views/contactSheet.html',
+                controller: ContactManagerApp.ContactPanelController,
+                controllerAs: "cp",
+                bindToController: true,
+                targetEvent: $event
+            }).then(function (clickedItem) {
+                clickedItem && console.log(clickedItem.name + ' clicked!');
+            });
         };
         MainController.prototype.addUser = function ($event) {
             var self = this;
@@ -78,7 +92,8 @@ var ContactManagerApp;
             '$mdSidenav',
             '$mdToast',
             '$mdDialog',
-            '$mdMedia'];
+            '$mdMedia',
+            '$mdBottomSheet'];
         return MainController;
     })();
     ContactManagerApp.MainController = MainController;
